@@ -7,6 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define BASE 0
 #define ENC1 1
@@ -14,6 +15,7 @@
 // #define CHL  3
 // Symbol Number Layer (SNL)
 // Control Hub Layer (CHL)
+
 #define SNL_SPC &lt SNL SPACE
 #define CHL_ESC &lt CHL ESC
 #define CHL_TAB &lt CHL TAB
@@ -55,15 +57,15 @@
 
     sym_num_layer {
 // ---------------------------------------------------------------------------------------------------------------------------------
-// |  `   |  !  |  |  |  [  |  ]  |  ^  |                                          |  %  |  7  |  8  |  9  |  0  | *BSPC |
-// | *ESC |  @  |  _  |  (  |  )  |  #  |                                          |  =  |  4  |  5  |  6  |  +  |  -    |
-// |  ~   |  \  |  &  |  {  |  }  |  $  |   ---   |   ---   |  |   ---   |   ---   |  .  |  1  |  2  |  3  | */  |  *    |
-//                    | ENC | --- |SPACE|  BSPC   |   ---   |  |   ---   |   RET   |SPACE| --- | ENC |
+// |  `   |  \  |  |  |  [  |  ]  |  #  |                                          |  .  |  7  |  8  |  9  |  ^  | *BSPC |
+// | *ESC |  @  |  _  |  (  |  )  |  $  |                                          |  =  |  4  |  5  |  6  |  -  |  +    |
+// |  ~   |  !  |  &  |  {  |  }  |  %  |   ---   |   ---   |  |   ---   |   ---   |  0  |  1  |  2  |  3  |  /  |  *    |
+//                    | ENC | --- |SPACE|   RET   |   ---   |  |   ---   |   RET   |SPACE| --- | ENC |
 			bindings = <
-	&kp GRAVE &kp EXCL &kp PIPE  &kp LBKT &kp RBKT &kp CARET                               &kp PRCNT &kp N7 &kp N8 &kp N9 &kp N0   &kp BSPC
-	&kp ESC   &kp AT   &kp UNDER &kp LPAR &kp RPAR &kp HASH                                &kp EQUAL &kp N4 &kp N5 &kp N6 &kp PLUS &kp MINUS
-	&kp TILDE &kp BSLH &kp AMPS  &kp LBRC &kp RBRC &kp DLLR &trans &trans    &trans &trans &kp DOT   &kp N1 &kp N2 &kp N3 &kp FSLH &kp ASTRK
-	                     &trans  &trans  &kp SPACE          &kp BSPC &trans  &trans &kp RET          &kp SPACE  &trans  &trans
+	&kp GRAVE &kp BSLH &kp PIPE  &kp LBKT &kp RBKT &kp HASH                                  &kp DOT   &kp N7 &kp N8 &kp N9 &kp CARET &kp BSPC
+	&kp CAPS  &kp AT   &kp UNDER &kp LPAR &kp RPAR &kp DLLR                                  &kp EQUAL &kp N4 &kp N5 &kp N6 &kp MINUS &kp PLUS
+	&kp TILDE &kp EXCL &kp AMPS  &kp LBRC &kp RBRC &kp PRCNT &trans  &trans    &trans &trans &kp N0    &kp N1 &kp N2 &kp N3 &kp FSLH &kp ASTRK
+	                     &trans  &trans  &kp SPACE           &kp RET &trans    &trans &kp RET          &kp SPACE  &trans  &trans
 			>;
 
 			sensor-bindings = <&inc_dec_kp LG(PLUS) LG(MINUS)>;
@@ -71,18 +73,19 @@
 
 //    control_hub_layer {
 // -----------------------------------------------------------------------------------------
-// |    F1    |    F2    |    F3    |    F4    |    F5    |    F6    |                              |    F7    |    F8    |    F9    |    F10   |    F11   |    F12   |
-// | C_BRI_DN | C_BRI_UP |    MC    |    TS    | BT_PREV  | BT_NEXT  |                              |  C_PREV  |   C_PP   |  C_NEXT  |  C_MUTE  | C_VOL_UP | C_VOL_DN |
-// |          |   BT1    |   BT2    |   BT3    |   BT4    |   BT5    | --- | --- |      | --- | --- |    BT1   |    BT2   |    BT3   |    BT4   |    BT5   |          |
-//                                  |  BT_CLR  |   ---    |   ---    | --- | --- |      | --- | --- |    ---   |    ---   |  BT_CLR  |
+// |    F1    |    F2    |    F3    |    F4    |    F5    |    F6    |                                  |    F7    |    F8    |    F9    |    F10   |    F11   |    F12   |
+// | C_BRI_DN | C_BRI_UP |    MC    |    TS    | BT_PREV  | BT_NEXT  |                                  |  C_PREV  |   C_PP   |  C_NEXT  |  C_MUTE  | C_VOL_UP | C_VOL_DN |
+// |          |   BT1    |   BT2    |   BT3    |   BT4    |   BT5    |   ---   | --- |  | --- |   ---   |    BT1   |    BT2   |    BT3   |    BT4   |    BT5   |          |
+//                                  |  BT_CLR  | OUT_USB  | OUT_BLE  | OUT_TOG | --- |  | --- | OUT_TOG | OUT_BLE  | OUT_USB  |  BT_CLR  |
+
 //      bindings = <
-//   &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6                                    &kp F7     &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
-//   &kp C_BRI_DN &kp C_BRI_UP &kp F3  &kp F4 &kp BT_PREV &kp BT_NEXT                                 &none      &none      &none      &none      &none      &none
+//   &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6                                                      &kp F7     &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
+//   &kp C_BRI_DN &kp C_BRI_UP &kp F3  &kp F4 &kp BT_PRV &kp BT_NXT                                 &none      &none      &none      &none      &none      &none
 //   &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none &none   &none &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none
-//                                                   &bt BT_CLR &none &none &none &none   &none &none &none &none &bt BT_CLR
+//                             &bt BT_CLR &out OUT_USB &out OUT_BLE &out OUT_TOG  &none   &none &out OUT_TOG &out OUT_BLE &out OUT_USB &bt BT_CLR
 //      >;
-//
-//		  sensor-bindings = <&inc_dec_kp BT_NXT BT_PRV;
+
+//		  sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP>;
 //    };
 	};
 };

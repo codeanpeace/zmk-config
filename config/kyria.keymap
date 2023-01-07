@@ -19,9 +19,11 @@
 #define SNL_SPC &lt SNL SPACE
 #define CHL_ESC &lt CHL ESC
 #define CHL_TAB &lt CHL TAB
+#define OPT_ESC &mt RALT ESC
 #define CTRL_ESC &mt LCTRL ESC
+#define CMD_BSPC &mt LCMD BSPC
 #define SHFT_RET &mt RSHFT RET
-#define SHFT_BSPC &mt LSHFT BSPC
+#define SHFT_TAB &mt LSHFT TAB
 
 / {
 	keymap {
@@ -32,13 +34,12 @@
 // |   TAB     |  Q  |  W  |  E  |  R  |  T  |                                             |  Y  |  U  |  I  |  O  |  P  |  BSPC    |
 // | CTRL_ESC  |  A  |  S  |  D  |  F  |  G  |                                             |  H  |  J  |  K  |  L  |  ;  |   '      |
 // | SHFT_BSPC |  Z  |  X  |  C  |  V  |  B  |   SHIFT   |  SHIFT  |  |  SHIFT  |   SHIFT  |  N  |  M  |  ,  |  .  |  /  | SHFT_RET |
-//                   |ENC1 | CMD | SPACE/SNL | SHFT_BSPC | ESC/CHL |  | TAB/CHL | SHFT_RET | SPACE/SNL | OPT | PLAY|
+//              |ENC1 | CMD_BSPC | SPACE/SNL | SHFT_TAB  | ESC/CHL |  | TAB/CHL | SHFT_RET | SPACE/SNL | OPT_ESC | PLAY|
 			bindings = <
 	&kp TAB   &kp Q &kp W &kp E &kp R &kp T                                                &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
 	&kp CAPS  &kp A &kp S &kp D &kp F &kp G                                                &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
 	&kp LSHFT &kp Z &kp X &kp C &kp V &kp B &kp LSHFT &kp LSHFT        &kp RSHFT &kp RSHFT &kp N &kp M  &kp COMMA &kp DOT &kp FSLH SHFT_RET
-                 &tog ENC1 &kp LCMD SNL_SPC SHFT_BSPC CHL_ESC        CHL_TAB  SHFT_RET SNL_SPC &kp RALT &kp C_PP
-              // &tog ENC1 &kp LCMD SNL_SPC SHFT_BSPC &kp ESC        &kp TAB  SHFT_RET SNL_SPC &kp RALT &kp C_PP
+                  &tog ENC1 CMD_BSPC SNL_SPC SHFT_TAB CHL_ESC        CHL_TAB  SHFT_RET SNL_SPC OPT_ESC &kp C_PP
 			>;
 
 			sensor-bindings = <&inc_dec_kp DOWN UP>;
